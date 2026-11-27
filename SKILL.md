@@ -77,6 +77,7 @@ Load only the references needed for the current task. Do not read every referenc
 | Transitions, feedback animation, shape morphing         | `references/motion.md`                |
 | Material 3 Expressive                                   | `references/m3-expressive.md`         |
 | Final audit / suspicious “Material-looking” UI          | `references/anti-patterns.md`         |
+| SwiftUI / iOS implementation, expressive loading & wavy progress, button groups, split button, FAB menu, segmented menu, carousel, proven token values & failure notes (ExpressiveUI) | `references/expressiveui-swiftui.md` |
 
 For a broad end-to-end design, load the references incrementally as decisions require them. Always include the accessibility reference before final approval.
 
@@ -223,6 +224,15 @@ Avoid handoff based on arbitrary literals unless they come from the project’s 
 
 Do not hardcode library version numbers into generated implementation unless they are verified against current official release notes.
 
+### SwiftUI / iOS
+
+There is no official Material library for SwiftUI. Read `references/expressiveui-swiftui.md` before implementing M3 there — it carries the proven know-how of **ExpressiveUI** (MIT, https://github.com/edenkollcinaku/ExpressiveUI), a shipping-app component set that rebuilds M3 Expressive controls from the spec's own tokens:
+
+- Rebuild the control's geometry, colour roles and motion; never just tint the stock iOS control.
+- Keep call sites ordinary SwiftUI via style protocols (`.toggleStyle(.expressive)`, `.buttonStyle(.expressive)`) so native accessibility comes for free.
+- Inject the colour-role set once near the root (environment), never per-component.
+- Split motion into spatial springs (movement, slight overshoot) and effects springs (colour/opacity only, critically damped, ~3× faster) — see the six-spring table in that reference and in `references/motion.md`.
+
 ### Web / other platforms
 
 Material 3 guidance can inform the design even when an official implementation library does not expose every component.
@@ -239,3 +249,4 @@ Material 3 guidance can inform the design even when an official implementation l
 A successful M3 interface should remain coherent when brand colors change, the window resizes, dark theme turns on, text scales up, keyboard replaces touch, or expressive styling is reduced.
 
 If the design only works because every surface is rounded and colorful, it is not a robust Material 3 design.
+

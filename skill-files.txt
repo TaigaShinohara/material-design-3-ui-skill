@@ -4,6 +4,7 @@ references/adaptive-design.md
 references/anti-patterns.md
 references/color-system.md
 references/component-selection.md
+references/expressiveui-swiftui.md
 references/feedback-and-overlays.md
 references/forms-and-input.md
 references/m3-expressive.md
