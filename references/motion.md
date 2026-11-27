@@ -148,6 +148,26 @@ numbers from memory: take them from the current library's motion scheme, and che
 current release notes for API stability before using Expressive APIs in production —
 not every Expressive API is stable.
 
+### The six named springs (Expressive scheme, proven values)
+
+Where no library motion scheme exists (SwiftUI, web, custom), use the six named springs
+distilled from ExpressiveUI (`references/expressiveui-swiftui.md` §1, sourced from
+`ExpressiveMotionTokens`). Components ask for a spring **by role**, never tune their own:
+
+| Role | Damping | Stiffness | SwiftUI `response` |
+|---|---|---|---|
+| `defaultSpatial` | 0.8 | 380 | 0.322 |
+| `fastSpatial` | 0.6 | 800 | 0.222 |
+| `slowSpatial` | 0.8 | 200 | 0.444 |
+| `defaultEffects` | 1.0 | 1600 | 0.157 |
+| `fastEffects` | 1.0 | 3800 | 0.102 |
+| `slowEffects` | 1.0 | 800 | 0.222 |
+
+The operational rule: **spatial = slight overshoot allowed; effects = critically damped
+and ~3× faster.** Running a colour change at the movement spring's rate makes the control
+read as fading — the single most common reason an M3 imitation feels soft. Conversely,
+never let a colour/opacity change overshoot.
+
 Expressive motion may add personality through spring behavior, shape changes, or stronger transitions, but it should still explain: - what changed, - where content came from, - what the user’s action affected.
 
 If removing the animation makes the interaction incomprehensible, the static states are under-designed.

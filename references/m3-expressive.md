@@ -33,6 +33,24 @@ Depending on current platform support: - button groups, - split buttons, - float
 
 Verify implementation-library support before naming an exact API.
 
+## Proven expressive specifics (ExpressiveUI)
+
+For concrete, shipping-proven values and behaviour for the patterns above, read
+`references/expressiveui-swiftui.md`. The load-bearing ideas, in short:
+
+- **Morphing loading indicator** — 7 shapes in Material's order, rotation and morph
+  deliberately out of step; determinate form's shape *is* its progress.
+- **Wavy progress** — only the filled part waves, the wave travels, and it flattens
+  below 10% / above 95% so the indicator settles as it arrives.
+- **Button-group squeeze** — pressing widens a segment by 15% and its neighbours give
+  way; the group's width never changes.
+- **Press = shape morph, not dimming** — a button's corner squares while held; a split
+  button does the opposite and its halves pull apart.
+- **Motion split** — spatial springs for movement, effects springs for colour (§1 of
+  that reference). One spring for both is the most common expressive failure.
+- **Restraint still applies** — these specifics strengthen one or two moments per
+  screen; they are not a licence to make every control morph, wave, or squeeze.
+
 ## Restraint test
 
 Ask: 1. What deserves the user’s attention first? 2. Which one or two expressive levers best reinforce that priority? 3. Can routine content remain calmer? 4. Does the UI remain understandable if expressive decoration is reduced? 5. Does accessibility remain intact?

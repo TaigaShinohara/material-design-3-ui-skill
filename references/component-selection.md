@@ -81,6 +81,23 @@ Every input requires a clear label or accessible name. Error text should explain
 
 Do not use a dialog for routine information that can remain inline. Do not stack modal surfaces.
 
+## Expressive variants — proven distinctions (ExpressiveUI)
+
+Read `references/expressiveui-swiftui.md` before specifying these; the distinctions
+that decide selection:
+
+- **Segmented buttons vs connected button group** — segmented = outlined, shared border,
+  checkmark + `secondaryContainer` selection, no press size change. Connected = filled
+  `surfaceContainer`, 2pt gaps, selected segment becomes a `primary` pill, press squeezes.
+  Expressive prefers connected in new work. Either way: 2–5 segments, past five use chips.
+- **Split button** — trailing half is a toggle (chevron turns over, becomes a circle while
+  open), not a menu; presentation stays the caller's.
+- **FAB menu** — one component, not a FAB wired to a menu: items unfold staggered from
+  the FAB and sit one emphasis step below it (`primaryContainer`).
+- **Switch** — its own geometry (52×32 track, handle 16/24/28), never a tinted platform toggle.
+- **Carousel** — items take sizes from viewport keylines and are masked, not scaled;
+  choose it when a focus item plus previews is the point, not as a generic card strip.
+
 ## Component decision test
 
 Before choosing a component, ask: 1. Is this navigation, action, selection, input, content, or feedback? 2. Is the state immediate or transactional? 3. What is its emphasis relative to nearby controls? 4. Does an established M3/platform control already solve it? 5. What are its disabled, focus, pressed, selected, loading, and error states? 6. Can it be operated and understood accessibly?

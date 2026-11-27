@@ -32,6 +32,23 @@ Do not stack a sheet on top of another modal surface unless the interaction has 
 - Prevent duplicate destructive/transactional submissions while busy.
 - Announce meaningful loading changes accessibly where needed.
 
+For M3 Expressive loading/progress, read `references/expressiveui-swiftui.md` §2–§3.
+The rules that change the result:
+
+- **Morphing loading indicator** (indeterminate): 7 shapes in Material's order, whole
+  shape rotating at 4666ms/rev while morphs step every 650ms — deliberately out of step.
+  Determinate: circle → soft burst, so the shape itself shows progress. Under Reduce
+  Motion, stop the spin but **keep the morph**.
+- **Progress is three parts, not two:** filled + 4pt gap + track, plus a stop dot at the
+  far end drawn at every progress including zero. Filled/dot = `primary`, track =
+  `secondaryContainer`.
+- **Wavy progress:** only the filled part waves; the wave travels at one wavelength per
+  second with its phase on the track, and flattens below 10% / above 95% (500ms ease).
+  Circular wavelength is snapped so a whole number of waves fits the ring.
+- **Circular indeterminate has no track** (transparent) — a lone arc on an empty ring is
+  the signal that the duration is unknown. Determinate circular keeps its
+  `secondaryContainer` track.
+
 ## Empty states
 
 Explain: 1. what the state means, 2. whether it is expected, 3. the next useful action when one exists.
